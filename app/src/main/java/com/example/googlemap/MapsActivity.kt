@@ -1,11 +1,20 @@
+/**
+ * File: MapsActivity.kt
+ * Group 7
+ * 1. QUOC PHONG NGO - 301148406
+ * 2. FEILIANG ZHOU  - 301216989
+ */
 package com.example.googlemap
 
 import android.content.Context
+import android.location.Geocoder
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.loader.content.AsyncTaskLoader
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -21,13 +30,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-//    private var markerPerth: Marker? = null
-//    private var markerSydney: Marker? = null
-//    private var markerBrisbane: Marker? = null
-//
-//    private val PERTH = LatLng(-31.952854, 115.857342)
-//    private val SYDNEY = LatLng(-33.87365, 151.20689)
-//    private val BRISBANE = LatLng(-27.47093, 153.0235)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,36 +53,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(map: GoogleMap) {
-//        mMap = googleMap
-//
-//        // Add a marker in Sydney and move the camera
-//        val sydney = LatLng(43.6532, -79.3832)
-//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         // Add some markers to the map, and add a data object to each marker.
         mMap = map
+        mMap.uiSettings.isZoomControlsEnabled = true
+
         HitApi(this@MapsActivity, 43.6532, -79.3832, 5000, "travel_agency").execute()
-//        markerPerth = map.addMarker(
-//            MarkerOptions()
-//                .position(PERTH)
-//                .title("Perth")
-//        )
-//        markerPerth?.tag = 0
-//        markerSydney = map.addMarker(
-//            MarkerOptions()
-//                .position(SYDNEY)
-//                .title("Sydney")
-//        )
-//        markerSydney?.tag = 0
-//        markerBrisbane = map.addMarker(
-//            MarkerOptions()
-//                .position(BRISBANE)
-//                .title("Brisbane")
-//        )
-//        markerBrisbane?.tag = 0
-//
-//        // Set a listener for marker click.
-//        map.setOnMarkerClickListener(this)
+        this.mMap?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
+            override fun getInfoWindow(p0: Marker?): View? {
+                return null
+            }
+
+            override fun getInfoContents(marker: Marker?): View {
+                // Inflate the layouts for the info window, title and snippet.
+                val infoWindow = layoutInflater.inflate(R.layout.custom_info_contents,
+                    findViewById<FrameLayout>(R.id.map), false)
+                val title = infoWindow.findViewById<TextView>(R.id.titleMap)
+                title.text = marker?.title
+                val snippet = infoWindow.findViewById<TextView>(R.id.snippet)
+                snippet.text = marker?.snippet
+
+                return infoWindow
+            }
+
+        })
+
+        // Set a listener for marker click.
+        map.setOnMarkerClickListener(this)
     }
 
     private inner class HitApi : AsyncTask<Void, Void, String> {
@@ -120,30 +118,34 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
     }
 
+    /**
+     * Draw marker
+     */
     public fun addMarkers(root: PlacesRoot) {
         for(result : Result in root.results) {
             val p = LatLng(result.geometry?.location?.lat!!, result.geometry?.location?.lng!!)
-            mMap.addMarker(MarkerOptions().position(p).title(result.name))
+            mMap.addMarker(MarkerOptions().position(p).title(result.name).snippet(getAddress(p)))
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.6532,-79.3832)))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
     }
 
+    /**
+     * Get address of selected marker
+     */
+    private fun getAddress(lat: LatLng): String? {
+        val geocoder = Geocoder(this)
+        val list = geocoder.getFromLocation(lat.latitude, lat.longitude,1)
+        return list[0].getAddressLine(0)
+    }
 
     override fun onMarkerClick(p0: Marker?): Boolean {
-        // Retrieve the data from the marker.
-        val clickCount = p0?.tag as? Int
-
         // Check if a click count was set, then display the click count.
-        clickCount?.let {
-            val newClickCount = it + 1
-            p0.tag = newClickCount
-            Toast.makeText(
+        Toast.makeText(
                 this,
-                "${p0.title} has been clicked $newClickCount times.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+                "${p0?.position?.latitude}",
+                Toast.LENGTH_LONG
+        ).show()
 
         return false
     }
