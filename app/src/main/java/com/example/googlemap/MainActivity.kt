@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
                 citySelected = "North York"
             }
         }
+        Toast.makeText(this,citySelected+" was selected",Toast.LENGTH_LONG).show()
         sharedPreferences.edit().putString(
             "city_selected", citySelected
         ).apply()
