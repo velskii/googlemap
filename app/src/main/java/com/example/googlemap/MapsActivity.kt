@@ -7,6 +7,7 @@
 package com.example.googlemap
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.location.Geocoder
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +55,31 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(map: GoogleMap) {
+        sharedPreferences = this.getSharedPreferences("com.example.googlemap", Context.MODE_PRIVATE)
+        var city_selected: String? = sharedPreferences.getString("city_selected", "Toronto")
+
+        var latitude = "43.6532"
+        var longitude = "-79.3832"
+        if (city_selected == "Toronto") {
+            latitude = "43.6532"
+            longitude = "-79.3832"
+        }
+        if (city_selected == "Mississauga") {
+            latitude = "43.595310"
+            longitude = "-79.640579"
+        }
+        if (city_selected == "Oakville") {
+            latitude = "43.4675"
+            longitude = "-79.6877"
+        }
+        if (city_selected == "Hamilton") {
+            latitude = "43.2557"
+            longitude = "-79.8711"
+        }
+        if (city_selected == "North York") {
+            latitude = "43.7615"
+            longitude = "-79.4111"
+        }
         // Add some markers to the map, and add a data object to each marker.
         mMap = map
         mMap.uiSettings.isZoomControlsEnabled = true

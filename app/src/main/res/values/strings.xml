@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">GoogleMap</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_main">Cities List Activity</string>
     <string name="places_api_key">API KEY</string>
+    <string name="submit">Submit</string>
+
+    <string-array name="cities">
+        <item>Toronto</item>
+        <item>Mississauga</item>
+        <item>Oakville</item>
+        <item>Hamilton</item>
+        <item>North York</item>
+    </string-array>
+    <string name="city1">Toronto</string>
+    <string name="city2">Mississauga</string>
+    <string name="city3">Oakville</string>
+    <string name="city4">Hamilton</string>
+    <string name="city5">North York</string>
 </resources>
