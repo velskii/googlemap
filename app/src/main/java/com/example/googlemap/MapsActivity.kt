@@ -58,24 +58,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap.uiSettings.isZoomControlsEnabled = true
 
         HitApi(this@MapsActivity, 43.6532, -79.3832, 5000, "travel_agency").execute()
-        this.mMap?.setInfoWindowAdapter(object : GoogleMap.InfoWindowAdapter {
-            override fun getInfoWindow(p0: Marker?): View? {
-                return null
-            }
-
-            override fun getInfoContents(marker: Marker?): View {
-                // Inflate the layouts for the info window, title and snippet.
-                val infoWindow = layoutInflater.inflate(R.layout.custom_info_contents,
-                    findViewById<FrameLayout>(R.id.map), false)
-                val title = infoWindow.findViewById<TextView>(R.id.titleMap)
-                title.text = marker?.title
-                val snippet = infoWindow.findViewById<TextView>(R.id.snippet)
-                snippet.text = marker?.snippet
-
-                return infoWindow
-            }
-
-        })
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
