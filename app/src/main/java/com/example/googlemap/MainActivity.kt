@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity() {
 
         val submit = findViewById<View>(R.id.submit_button) as Button
         submit.setOnClickListener {
+            var city_selected: String? = sharedPreferences.getString("city_selected", "")
+            if (city_selected == "") {
+                Toast.makeText(this,"Please select one city",Toast.LENGTH_LONG).show()
+            }
             val i = Intent(this@MainActivity, MapsActivity::class.java)
             startActivity(i)
         }
