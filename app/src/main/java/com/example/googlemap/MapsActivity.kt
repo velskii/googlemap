@@ -12,7 +12,6 @@ import android.location.Geocoder
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -84,7 +83,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap = map
         mMap.uiSettings.isZoomControlsEnabled = true
 
-        HitApi(this@MapsActivity, 43.6532, -79.3832, 5000, "travel_agency").execute()
+        HitApi(this@MapsActivity, latitude.toDouble(), longitude.toDouble(), 5000, "travel_agency").execute()
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
