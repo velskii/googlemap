@@ -57,9 +57,10 @@ class MainActivity : AppCompatActivity() {
             var city_selected: String? = sharedPreferences.getString("city_selected", "")
             if (city_selected == "") {
                 Toast.makeText(this,"Please select one city",Toast.LENGTH_LONG).show()
+            } else {
+                val i = Intent(this@MainActivity, MapsActivity::class.java)
+                startActivity(i)
             }
-            val i = Intent(this@MainActivity, MapsActivity::class.java)
-            startActivity(i)
         }
 
     }
