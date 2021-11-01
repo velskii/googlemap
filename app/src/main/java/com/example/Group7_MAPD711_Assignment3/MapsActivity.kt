@@ -4,16 +4,15 @@
  * 1. QUOC PHONG NGO - 301148406
  * 2. FEILIANG ZHOU  - 301216989
  */
-package com.example.googlemap
+package com.example.Group7_MAPD711_Assignment3
 
+import Group7_MAPD711_Assignment3.R
 import android.content.Context
 import android.content.SharedPreferences
 import android.location.Geocoder
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.FrameLayout
-import android.widget.TextView
 import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,6 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+//import com.example.Group7_MAPD711_Assignment3.databinding.ActivityMapsBinding
 import com.example.googlemap.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.model.Marker
 import com.google.gson.GsonBuilder
@@ -54,7 +54,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
      * installed Google Play services and returned to the app.
      */
     override fun onMapReady(map: GoogleMap) {
-        sharedPreferences = this.getSharedPreferences("com.example.googlemap", Context.MODE_PRIVATE)
+        sharedPreferences = this.getSharedPreferences("com.example.Group7_MAPD711_Assignment3", MODE_PRIVATE)
         var city_selected: String? = sharedPreferences.getString("city_selected", "Toronto")
 
         var latitude = "43.6532"

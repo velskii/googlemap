@@ -1,12 +1,17 @@
-package com.example.googlemap
+/**
+ * MAPD711
+ * Assignment 2 - Group 7
+ * Quoc Phong Ngo studentId:301148406
+ * Feiliang Zhou studentId:301216989
+ */
+package com.example.Group7_MAPD711_Assignment3
 
+import Group7_MAPD711_Assignment3.R
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.*
 
@@ -16,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sharedPreferences = this.getSharedPreferences("com.example.googlemap", Context.MODE_PRIVATE)
+        sharedPreferences = this.getSharedPreferences("com.example.Group7_MAPD711_Assignment3", Context.MODE_PRIVATE)
 
 
         val listView: ListView = findViewById(R.id.list_view)

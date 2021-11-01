@@ -4,7 +4,7 @@
  * 1. QUOC PHONG NGO - 301148406
  * 2. FEILIANG ZHOU  - 301216989
  */
-package com.example.googlemap
+package com.example.Group7_MAPD711_Assignment3
 
 import android.content.Context
 import java.lang.Exception

@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.googlemap"
+        applicationId "com.example.Group7_MAPD711_Assignment3"
         minSdk 23
         targetSdk 31
         versionCode 1

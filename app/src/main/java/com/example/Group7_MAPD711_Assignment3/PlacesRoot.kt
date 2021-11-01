@@ -1,6 +1,4 @@
-package com.example.googlemap
-
-import android.content.Context
+package com.example.Group7_MAPD711_Assignment3
 
 data class PlacesRoot (
     val error_message: String?,
