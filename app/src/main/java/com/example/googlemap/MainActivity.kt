@@ -65,33 +65,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menus, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var citySelected = ""
-        when (item.itemId){
-            R.id.city1 -> {
-                citySelected = "Toronto"
-            }
-            R.id.city2 -> {
-                citySelected = "Mississauga"
-            }
-            R.id.city3 -> {
-                citySelected = "Oakville"
-            }
-            R.id.city4 -> {
-                citySelected = "Hamilton"
-            }
-            R.id.city5 -> {
-                citySelected = "North York"
-            }
-        }
-        Toast.makeText(this,citySelected+" was selected",Toast.LENGTH_LONG).show()
-        sharedPreferences.edit().putString(
-            "city_selected", citySelected
-        ).apply()
-        return super.onOptionsItemSelected(item)
-    }
+
 }
