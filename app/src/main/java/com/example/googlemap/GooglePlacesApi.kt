@@ -1,3 +1,9 @@
+/**
+ * File: GooglePlacesApi.kt
+ * Group 7
+ * 1. QUOC PHONG NGO - 301148406
+ * 2. FEILIANG ZHOU  - 301216989
+ */
 package com.example.googlemap
 
 import android.content.Context
