@@ -47,10 +47,11 @@ class MainActivity : AppCompatActivity() {
             if (position == 4) {
                 citySelected = "North York"
             }
+            Toast.makeText(this,citySelected+" was selected",Toast.LENGTH_LONG).show()
+            sharedPreferences.edit().putString(
+                "city_selected", citySelected
+            ).apply()
         }
-        sharedPreferences.edit().putString(
-            "city_selected", citySelected
-        ).apply()
 
         val submit = findViewById<View>(R.id.submit_button) as Button
         submit.setOnClickListener {

@@ -83,7 +83,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap = map
         mMap.uiSettings.isZoomControlsEnabled = true
 
-        HitApi(this@MapsActivity, latitude.toDouble(), longitude.toDouble(), 5000, "travel_agency").execute()
+        HitApi(this@MapsActivity, latitude.toDouble(), longitude.toDouble(), 800, "travel_agency").execute()
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
