@@ -21,7 +21,7 @@ class GooglePlacesApi {
         var result = ""
         try {
             var key: String = context.resources.getString(R.string.places_api_key)
-            var urlStr: String = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$lat,$lng&radius=$radius&type=$type&key=$key"
+            var urlStr: String = "https://maps.googleapis.com/maps/api/place/search/json?location=$lat,$lng&radius=$radius&type=$type&key=$key"
             var url: URL = URL(urlStr)
             val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
             connection.setRequestProperty("Content-Type", "application/json")

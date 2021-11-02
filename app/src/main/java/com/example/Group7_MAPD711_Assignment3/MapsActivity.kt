@@ -7,6 +7,7 @@
 package com.example.Group7_MAPD711_Assignment3
 
 import Group7_MAPD711_Assignment3.R
+import Group7_MAPD711_Assignment3.databinding.ActivityMapsBinding
 import android.content.Context
 import android.content.SharedPreferences
 import android.location.Geocoder
@@ -21,8 +22,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-//import com.example.Group7_MAPD711_Assignment3.databinding.ActivityMapsBinding
-import com.example.googlemap.databinding.ActivityMapsBinding
 import com.google.android.gms.maps.model.Marker
 import com.google.gson.GsonBuilder
 
@@ -82,8 +81,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         // Add some markers to the map, and add a data object to each marker.
         mMap = map
         mMap.uiSettings.isZoomControlsEnabled = true
-
-        HitApi(this@MapsActivity, latitude.toDouble(), longitude.toDouble(), 800, "travel_agency").execute()
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(latitude.toDouble(),longitude.toDouble())))
+        HitApi(this@MapsActivity, latitude.toDouble(), longitude.toDouble(), 5000, "travel_agency").execute()
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
@@ -134,7 +133,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             val p = LatLng(result.geometry?.location?.lat!!, result.geometry?.location?.lng!!)
             mMap.addMarker(MarkerOptions().position(p).title(result.name).snippet(getAddress(p)))
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.6532,-79.3832)))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.6532,-79.3832)))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
     }
 
