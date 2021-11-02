@@ -22,8 +22,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.*
 
 import com.google.android.gms.maps.model.LatLng
