@@ -6,6 +6,7 @@
  */
 package com.example.Group7_MAPD711_Assignment3
 
+import Group7_MAPD711_Assignment3.R
 import android.content.Context
 import java.lang.Exception
 import java.net.HttpURLConnection
