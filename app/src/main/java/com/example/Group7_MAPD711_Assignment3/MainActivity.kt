@@ -1,6 +1,6 @@
 /**
  * MAPD711
- * Assignment 2 - Group 7
+ * Assignment 3 - Group 7
  * Quoc Phong Ngo studentId:301148406
  * Feiliang Zhou studentId:301216989
  */
