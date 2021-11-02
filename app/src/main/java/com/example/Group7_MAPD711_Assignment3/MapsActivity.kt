@@ -92,9 +92,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
-//        /**
-//         * Set map style
-//         */
+        /**
+         * Set map style
+         */
         val radioGroup = findViewById<View>(R.id.rd_group) as RadioGroup
         radioGroup.setOnCheckedChangeListener(
             RadioGroup.OnCheckedChangeListener {
