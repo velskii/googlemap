@@ -6,4 +6,31 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    tools:context=".MapsActivity">
+    <RadioGroup
+        android:checkedButton="@id/rdb_standard"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:id="@+id/rd_group">
+        <RadioButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/standard"
+            android:id="@+id/rdb_standard" />
+        <RadioButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="true"
+            android:text="@string/satellite"
+            android:id="@+id/rdb_satellite" />
+        <RadioButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:checked="true"
+            android:text="@string/hybrid"
+            android:id="@+id/rdb_hybrid" />
+    </RadioGroup>
+</fragment>

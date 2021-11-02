@@ -2,7 +2,7 @@
     <string name="app_name">GoogleMap</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_main">Cities List Activity</string>
-    <string name="places_api_key">API KEY</string>
+    <string name="places_api_key">AIzaSyCl5-reim098AL5LLQk-dK6Ltpg8PbAtHM</string>
     <string name="submit">Submit</string>
 
     <string-array name="cities">
@@ -17,4 +17,7 @@
     <string name="city3">Oakville</string>
     <string name="city4">Hamilton</string>
     <string name="city5">North York</string>
+    <string name="satellite">Satellite</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="standard">Standard</string>
 </resources>

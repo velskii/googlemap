@@ -9,17 +9,23 @@ package com.example.Group7_MAPD711_Assignment3
 import Group7_MAPD711_Assignment3.R
 import Group7_MAPD711_Assignment3.databinding.ActivityMapsBinding
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.location.Location
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.*
 
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Marker
@@ -41,6 +47,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        val rdbStandard = findViewById<RadioButton>(R.id.rdb_standard)
+        rdbStandard.isChecked = true
     }
 
     /**
@@ -86,6 +94,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         // Set a listener for marker click.
         map.setOnMarkerClickListener(this)
+//        /**
+//         * Set map style
+//         */
+        val radioGroup = findViewById<View>(R.id.rd_group) as RadioGroup
+        radioGroup.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener {
+                group, checkId ->
+                val mapStyle: RadioButton = findViewById(checkId)
+                if (mapStyle.text.equals("Hybrid")) {
+                    mMap.mapType = GoogleMap.MAP_TYPE_HYBRID
+                } else if(mapStyle.text.equals("Satellite")) {
+                    mMap.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                } else {
+                    mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
+                }
+//                Toast.makeText(
+//                    this,
+//                    "${mapStyle.text}",
+//                    Toast.LENGTH_LONG
+//                ).show()
+            }
+        )
     }
 
     private inner class HitApi : AsyncTask<Void, Void, String> {
@@ -133,7 +163,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             val p = LatLng(result.geometry?.location?.lat!!, result.geometry?.location?.lng!!)
             mMap.addMarker(MarkerOptions().position(p).title(result.name).snippet(getAddress(p)))
         }
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.6532,-79.3832)))
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
     }
 
@@ -148,12 +177,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
     override fun onMarkerClick(p0: Marker?): Boolean {
         // Check if a click count was set, then display the click count.
-        Toast.makeText(
-                this,
-                "${p0?.position?.latitude}",
-                Toast.LENGTH_LONG
-        ).show()
 
         return false
     }
 }
+
